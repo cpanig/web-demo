@@ -1,0 +1,75 @@
+#dad{
+  width: 750px;
+  height: 400px;
+  position: relative;
+  border: 1px solid black;
+  overflow: hidden;
+  left: 10%;
+}
+
+
+.child{
+  width: 8%;
+  height: 100%;
+  background: lightslategrey;
+  color: white;
+  opacity: 0.2;
+  -moz-opacity: 0.2;
+  cursor: pointer;
+  position: absolute;
+}
+.child h1{
+  position: absolute;
+  top: 40%;
+  left: 15%;
+}
+
+#son{
+  left: 0;
+}
+#dor{
+  right: 0;
+}
+
+.child:hover{
+  opacity: 0.7;
+  -moz-opacity: 0.7;
+}
+#wife,#wife ul{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 0;
+}
+
+#wife ul li{
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  position: absolute;
+}
+
+.l-1{background: red; left: 0}
+.l-2{background: green; left: 100%}
+.l-3{background: yellow; left: 200% }
+.l-4{background: blue; left: 300%}
+
+
+
+.goNext{
+  transform: translateX(-100%);
+  transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;;
+  -o-transition: all 0.5s ease-in-out; ;
+  -webkit-transition: all 0.5s ease-in-out;;
+}
+
+.goLast{
+  transform: translateX(100%);
+  transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;;
+  -o-transition: all 0.5s ease-in-out;;
+  -webkit-transition: all 0.5s ease-in-out;;
+}
