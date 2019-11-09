@@ -1,0 +1,153 @@
+
+*{
+  padding: 0;
+  margin: 0;
+}
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+  color: white;
+}
+#nav{
+  width: 100%;
+  height: auto;
+  background: #2A385B;
+}
+
+#nav ul{
+  width: 100%;
+  margin: 0 100px;
+}
+
+.menu{
+  display: inline-block;
+  width: content-box;
+  font-size: 17px;
+  margin-left: 25px;
+  color: white;
+  padding: 17px 5px 17px 5px;
+}
+
+.nav-m{
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+}
+.menu a + div{
+  width: 0;
+  height: 0;
+  content: '';
+  border: 6px solid;
+  border-color: white transparent transparent transparent;
+  display: inline-block;
+  margin-left: 5px;
+  margin-bottom: -4px;
+}
+.nav-m:hover{
+  border-bottom: 3px solid #FF6666;
+}
+
+
+/*下拉菜单*/
+#menu-ex{
+  background:#2A385B;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+}
+.menu-show{
+  opacity: 1;
+  height: 400px;
+  transition: height 0.5s ease-out;
+}
+.menu-fade{
+
+}
+.info-nav{
+  color: white;
+  width: 100%;
+  height: 100%;
+  position: inherit;
+}
+
+.tri-up{
+  transform: rotateX(180deg);
+  transition: transform 0.5s ease-out;
+  -moz-transition: transform 0.5s ease-out;
+  -webkit-transition: transform 0.5s ease-out;
+  -o-transition: transform 0.5s ease-out;
+}
+
+
+/*关于华为云*/
+
+
+#tips{
+  width: 20%;
+  text-align: center;
+  background: darkslateblue;
+  color: lightgray;
+  padding: 10px 10px;
+  margin: 25px 0 0 30px;
+  font-size: 15px;
+  position: relative;
+}
+#tips:before{
+  width: 0;
+  height: 0;
+  content: '';
+  border: 8px solid;
+  border-color: transparent transparent darkslateblue transparent;
+  position: absolute;
+  top: -15px;
+  left: 40%;
+}
+
+#nav-1-con{
+  width: 100%;
+  height: auto;
+  margin: 1% 0;
+}
+#nav-1-con ul{
+  display: flex;
+  flex-flow: row wrap;
+  -webkit-flex-flow: row wrap;
+}
+
+.chose{
+  width:  270px;
+  height: 100px;
+  margin: 10px 0 10px 15px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.chose h5{
+  color: gray;
+  width: 230px;
+  margin-top: 3%;
+}
+
+.chose:hover a{
+  color: #FF6666;
+  transition: color 0.3s ease-out;
+  -moz-transition: color 0.3s ease-out;
+  -webkit-transition: color 0.3s ease-out;
+  -o-transition: color 0.3s ease-out;
+}
+
+.chose:hover h5{
+  color: white;
+  transition: color 0.3s ease-out;
+  -moz-transition: color 0.3s ease-out;
+  -webkit-transition: color 0.3s ease-out;
+  -o-transition: color 0.3s ease-out;
+}
+
+/*产品*/
+
+
