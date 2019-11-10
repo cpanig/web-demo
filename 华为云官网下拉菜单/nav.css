@@ -1,7 +1,10 @@
-
 *{
   padding: 0;
   margin: 0;
+
+}
+body{
+  min-width: 100%;
 }
 li{
   list-style: none;
@@ -11,15 +14,19 @@ a{
   color: white;
 }
 #nav{
-  width: 100%;
+  width: auto;
   height: auto;
-  background: #2A385B;
+  background: #252B3A ;
+
 }
 
-#nav ul{
+#nav-ul{
   width: 100%;
   margin: 0 100px;
+  display: flex;
+  flex-flow: row nowrap;
 }
+
 
 .menu{
   display: inline-block;
@@ -45,16 +52,20 @@ a{
   margin-left: 5px;
   margin-bottom: -4px;
 }
-.nav-m:hover{
+.nav-m > div:hover:before{
+  border-bottom: 3px solid #FF6666;
+}
+.nav-m:hover {
   border-bottom: 3px solid #FF6666;
 }
 
 
 /*下拉菜单*/
 #menu-ex{
-  background:#2A385B;
+  background: #252B3A;
+  opacity: 1;
   width: 100%;
-  height: 0;
+  height: 800px;
   overflow: hidden;
   position: absolute;
   left: 0;
@@ -150,4 +161,142 @@ a{
 
 /*产品*/
 
+/*该部分3个通用*/
+.tips345{
+  width: 400px;
+  height: 35px;
+  position: absolute;
+  top: 4%;
+  left: 12.8%;
+}
+.tips345:before{
+  width: 0;
+  height: 0;
+  content: '';
+  border: 8px solid;
+  border-color: transparent transparent black transparent;
+  opacity: 0.5;
+  position: absolute;
+  top: -45%;
+}
+#tips-3:before{left: 48%;}
 
+.tips345 > input{
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.5;
+  color: white;
+  border: 0;
+  z-index: 90;
+  display: inline-block;
+}
+
+.tips345 > a{
+  position: absolute;
+  right: 3%;
+  top: 20%;
+}
+.tips345 a:hover{
+  color: #FF6666;
+}
+
+.nav-345-con{
+  width: 100%;
+  height: 600px;
+  margin: 6% auto;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+/*左边部分*/
+.nav-left{
+  width: 15%;
+  height: 380px;
+  margin: 10px 0 10px 13%;
+  display: inline-block;
+
+}
+.nav-left ul li{
+  width: 100%;
+  line-height: 3;
+  margin-bottom: 5px;
+  height: 50px;
+
+}
+.nav-left ul li h4{
+  width: fit-content;
+  font-weight: normal;
+  height: 40px;
+
+}
+.nowLoc,
+.nav-left ul li:hover h4{
+  border-bottom: #FF6666 3px solid;
+}
+
+
+/*右边部分*/
+.nav-right{
+  width: 70%;
+  height: 500px;
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 10px 0 0 0;
+}
+
+.right-float{
+  width: 60%;
+  height: 500px;
+  border-left:1px solid white;
+  border-right: 1px solid white;
+  display: flex;
+  flex-flow: row nowrap;
+
+}
+.ul-float{
+  width: 33%;
+  height: 100%;
+  float: left;
+  font-size: 12px;
+}
+.ul-float h3{
+  margin: 10px 0 0 50px;
+  font-weight: normal;
+}
+.ul-float li{
+  margin: 20px 0 0 50px;
+}
+.ul-float li a{
+  color: grey;
+
+}
+.ul-float li a:hover{
+  color: #FF6666;
+}
+#message{
+  width: 25%;
+  height: 50%;
+  margin: 10px 75px;
+  display: inline-block;
+  float: right;
+}
+#message ul li{
+  margin: 30px 0;
+}
+#message ul li *{
+  color: grey;
+  font-weight: normal;
+  cursor: pointer;
+}
+#message ul h4{
+
+  font-weight: normal;
+}
+
+#message ul li:hover a{
+  color: #FF6666;
+}
+#message ul li:hover h5{
+  color: white;
+}
