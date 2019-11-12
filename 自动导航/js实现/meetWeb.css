@@ -1,0 +1,272 @@
+body{
+  margin: 0 200px;
+  overflow: hidden;
+
+}
+ul{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+
+@keyframes fade {
+  from{opacity: 1;}
+  to{opacity: 0; }
+}
+
+/*整个主体*/
+#main{
+  width: 70%;
+  height: 763px;
+  margin: 0 auto;
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  opacity: 1;
+}
+
+/*5个部分通用样式*/
+.tittle{
+  width: 80%;
+  height: auto;
+  padding: 20px 0 0 100px;
+  color: white;
+}
+.info{
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(45deg,#2A385B 0%,#6780C0 51%,#7490D0 75%);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*以下皆为导航部分效果*/
+
+#nav{
+  width: 200px;
+  height: auto;
+  position: fixed;
+  top: 20%;
+  right: 10%;
+  z-index: 1001;
+  opacity: 1;
+
+}
+
+
+#nav ul li{
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 55px;
+  border-radius: 5px ;
+  margin-top: 20px;
+  text-align: center;
+}
+.Loc{
+  background: #999999;
+  padding: 20px;
+  color: black;
+  box-shadow: black 1px 1px 1px ;
+  border-radius: 3px;
+  position: relative;
+}
+
+/* 鼠标移动到导航块上的效果，以及点击后的效果 */
+.nowLoc{
+  position: relative;
+  right: 8%;
+}
+.nowLoc,
+#nav > ul > li a:hover {
+  background: #FF6666 ;
+  color: white;
+  transform: translateX(8%);
+  transition: all 0.2s ease-in-out;
+}
+
+/* 点击导航块后，页面移动的效果 */
+.move-1{
+  transform: translate3d(0,0,0);
+  animation-name: move-1;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes move-1 {
+  from{}
+  to{top: 0}
+}
+
+.move-2{
+  transform: translate3d(0,0,0);
+  animation-name: move-2;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes move-2 {
+  from{}
+  to{top: -100%}
+}
+
+
+.move-3{
+  transform: translate3d(0,0,0);
+  animation-name: move-3;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes move-3 {
+  from{}
+  to{top: -200%}
+}
+
+
+.move-4{
+  transform: translate3d(0,0,0);
+  animation-name: move-4;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes move-4 {
+  from{}
+  to{top: -300%}
+}
+
+
+.move-5{
+  transform: translate3d(0,0,0);
+  animation-name: move-5;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes move-5 {
+  from{}
+  to{top: -400%}
+}
+
+/*三角形提示符*/
+
+#tri-1{
+  width: 0;
+  height: 0;
+  content: '';
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 50px solid white;
+  position: fixed;
+  z-index: 1000;
+  bottom: 1%;
+  left: 46%;
+  cursor: pointer;
+
+}
+
+
+#tri-2{
+  width: 0;
+  height: 0;
+  content: '';
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 50px solid white;
+  position: fixed;
+  z-index: 1000;
+  top: 1%;
+  left: 46%;
+  cursor: pointer;
+}
+
+/*三角形动画*/
+.hop{
+  transform: translate3d(0,0,0);
+  animation-name: hop;
+  animation-duration: 2s;
+  animation-iteration-count: infinite ;
+  animation-fill-mode: forwards;
+}
+
+@keyframes hop {
+  0%{opacity: 1}
+  50%{opacity: 0}
+  100%{opacity: 1}
+}
+
+
+.round{
+
+  animation-name: round;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes round {
+  from{}
+  to{transform: rotateY(360deg);}
+}
+
+.goNext{
+  transform: translateY(-100%);
+  transition: all 1s ease-in-out;
+}
+.goLast{
+  transform: translateY(100%);
+  transition: all 1s ease-in-out;
+}
