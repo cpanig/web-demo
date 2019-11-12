@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <style>
+    div{
+      display: block;
+      margin-left: 20px;
+      position: absolute;
+      width: 380px;
+    }
+    #mail{top: 80px; }
+
+    div div{
+      display: inline-block;
+    }
+    div input{
+      width: 300px;
+    }
+  </style>
+
+</head>
+<body>
+
+<label>
+  <div id="mail">
+  邮箱：<input type="text" id="email" placeholder="支持yahoo、qq、163邮箱"><div id="tips" ></div>
+  </div>
+  <div id="passwd">
+  密码：<input type="text" id="pwd" placeholder="8~20位，大写字母，数字，符号">&nbsp&nbsp<div id="tips-2" ></div>
+  </div>
+
+</label>
+
+
+<script type="text/javascript">
+    window.onload = function () {
+    if (!document.getElementById) return false;
+    if (!document.getElementById('email')) return  false;
+    if (!document.getElementById('tips')) return  false;
+    if (!document.getElementById('pwd')) return  false;
+    if (!document.getElementById('tips-2')) return  false;
+    var mail = document.getElementById('email');
+    var tips  = document.getElementById('tips');
+    var serCet = document.getElementById('pwd');
+    var tips2 = document.getElementById('tips-2');
+
+
+    //支持的邮箱类型
+    var mailBox = ["qq","163","yahoo"];
+    //将邮箱分成4个部分
+    var con =  /(\w{1,19})(@)(\w+)(.com)/;
+    //检验前缀长度
+    var mthCh = /\w{9,19}/ ;
+    //校验邮箱后缀
+    var atCh = /@/;
+
+    //密码检验，要求：至少8位，要包含大写字母，标点符号
+
+
+    //检验密码长度
+    var secLen = /.{7,19}/;
+    //检验密码是否含有标点符号
+    var secPot = /[^\w\s]/;
+    //检验密码是否含大写字母
+    var secUps = /[A-Z]/;
+    var secMth = /[0-9]/;
+    var seceasy = /^()/
+
+    //鼠标点击输入框时，清除边框
+    function clr(inx) {
+        inx.style.border = '1px solid black';
+    }
+
+    //错误时，边框变为红色，并提示错误原因
+    function tipx(obj,obj2,tx){
+        obj.style.border = '2px solid red';
+        obj2.style.color = 'red' ;
+        obj2.innerHTML ="<span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>"+tx;
+    }
+
+    //正确时，边框变绿
+    function tipy(obj,obj2){
+        obj.style.border = '2px solid green';
+        obj2.style.color = 'green' ;
+        obj2.innerHTML = "<span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"></span>";
+    }
+
+    //邮箱
+    mail.onclick = function (){clr(mail);};
+    mail.onblur = function email() {
+        var chBox = mail.value.split(con);
+        tips.innerHTML = '';
+        if (mail.value !== "") {
+            if (atCh.test(chBox[2]) === false || chBox[4].search('.com') === -1) {
+                tipx(mail,tips,'请填写正确的邮箱格式');
+            } else if (mthCh.test(chBox[1]) === false) {
+                tipx(mail,tips,'前缀不得少于10个字符且不得多于20个字符！');
+            } else if (chBox[3]) {
+                for (var i = 0; i < mailBox.length; i++) {
+                    if (mailBox[i] !== chBox[3]) {
+                        tipx(mail,tips,'抱歉，本站不支持此邮箱！');
+                    } else {
+                        tipy(mail,tips);
+                        return true;
+                    }
+                }
+            }
+        }else {
+            tipx(mail,tips,'邮箱不能为空！');
+        }
+    };
+
+
+    //密码
+    serCet.onclick = function(){clr(serCet);};
+    serCet.onblur = function pwd() {
+        if (serCet.value !== ''){
+            if (secLen.test(serCet.value) === false){
+                tipx(serCet,tips2,'密码长度必须大于8个字符，小于20个字符！');
+            } else if (secPot.test(serCet.value) === false){
+                tipx(serCet,tips2,'密码必须包含标点符号');
+            }else if(secUps.test(serCet.value) === false){
+                tipx(serCet,tips2,'密码必须包含大小写字母');
+            }else if (secMth.test(serCet.value) === false){
+                tipx(serCet,tips2,'密码必须包含数字');
+            } else if (serCet) {
+                tipy(serCet, tips2);
+                return true;
+            }
+        }else {
+            tipx(serCet,tips2,'密码不能为空！');
+        }
+    };
+
+
+
+    }
+</script>
+</body>
+</html>
