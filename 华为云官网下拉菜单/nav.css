@@ -1,7 +1,7 @@
 *{
   padding: 0;
   margin: 0;
-
+  font-weight: normal;
 }
 body{
   min-width: 100%;
@@ -31,6 +31,7 @@ a{
 .menu{
   display: inline-block;
   width: content-box;
+  min-width: 40px;
   font-size: 17px;
   margin-left: 25px;
   color: white;
@@ -65,24 +66,19 @@ a{
   background: #252B3A;
   opacity: 1;
   width: 100%;
-  height: 800px;
-  overflow: hidden;
+  height: 0;
   position: absolute;
   left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
-.menu-show{
-  opacity: 1;
-  height: 400px;
-  transition: height 0.5s ease-out;
-}
-.menu-fade{
 
-}
 .info-nav{
   color: white;
   width: 100%;
   height: 100%;
   position: inherit;
+  opacity: 0;
 }
 
 .tri-up{
@@ -121,7 +117,7 @@ a{
 #nav-1-con{
   width: 100%;
   height: auto;
-  margin: 1% 0;
+  margin: 1% 8%;
 }
 #nav-1-con ul{
   display: flex;
@@ -132,7 +128,7 @@ a{
 .chose{
   width:  270px;
   height: 100px;
-  margin: 10px 0 10px 15px;
+  margin: 10px 0;
   cursor: pointer;
   z-index: 10;
 }
@@ -165,9 +161,9 @@ a{
 .tips345{
   width: 400px;
   height: 35px;
-  position: absolute;
-  top: 4%;
-  left: 12.8%;
+  position: relative;
+  top: 25px;
+  left: 185px;
 }
 .tips345:before{
   width: 0;
@@ -190,6 +186,7 @@ a{
   border: 0;
   z-index: 90;
   display: inline-block;
+  position: absolute;
 }
 
 .tips345 > a{
@@ -238,27 +235,51 @@ a{
 
 /*右边部分*/
 .nav-right{
-  width: 70%;
-  height: 500px;
+  height: fit-content;
+  margin: 10px 0 0 0;
   display: flex;
   flex-flow: row nowrap;
-  margin: 10px 0 0 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 15px;
+}
+
+.right-float{
+  height: fit-content;
+  float: left;
+}
+
+
+#info-rec {
+  display: block;
+  width: 70%;
 }
 
 .right-float{
   width: 60%;
   height: 500px;
-  border-left:1px solid white;
-  border-right: 1px solid white;
-  display: flex;
-  flex-flow: row nowrap;
 
+  border-left: 1px solid white;
+  border-right: 1px solid white;
 }
+
+#info-bse{
+  display: none;
+  width: 850px;
+  column-width: 200px;
+  border-left: 1px solid white;
+}
+
 .ul-float{
-  width: 33%;
+  width: 210px;
   height: 100%;
-  float: left;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-bottom: 0;
   font-size: 12px;
+  float: left;
+
+
 }
 .ul-float h3{
   margin: 10px 0 0 50px;
@@ -266,37 +287,41 @@ a{
 }
 .ul-float li{
   margin: 20px 0 0 50px;
-}
-.ul-float li a{
-  color: grey;
+
 
 }
-.ul-float li a:hover{
+.ul-float li > a{
+  color: grey;
+}
+.ul-float li > a:hover{
   color: #FF6666;
 }
 #message{
-  width: 25%;
+  width: 30%;
   height: 50%;
-  margin: 10px 75px;
-  display: inline-block;
-  float: right;
+  float: left;
+  padding: 10px 0 0 40px;
+
 }
-#message ul li{
+#message ul > li{
   margin: 30px 0;
 }
-#message ul li *{
+
+#message ul > li > *{
   color: grey;
   font-weight: normal;
   cursor: pointer;
 }
-#message ul h4{
 
+#message ul > h4{
   font-weight: normal;
 }
-
-#message ul li:hover a{
+#message > ul > li > h5{
+  margin-top: 8px;
+}
+#message ul > li:hover a{
   color: #FF6666;
 }
-#message ul li:hover h5{
+#message ul > li:hover h5{
   color: white;
 }
