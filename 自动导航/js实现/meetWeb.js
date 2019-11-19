@@ -1,11 +1,12 @@
 
 function moveUd() {
+  console.log(this);
   if (!document.getElementById) return false;
   if (!document.querySelectorAll) return  false;
   if (!document.getElementById('main')) return  false;
   if (!document.getElementById('tri-1')) return  false;
-  if (!document.getElementById('tir-2')) return  false;
   if (!document.querySelectorAll('#nav ul > li > a')) return  false;
+  if (!document.getElementById('tri-2')) return  false;
 
   this.curScr = document.getElementById('main');
   this.menus = document.querySelectorAll('#nav > ul > li > a'); //获取所有导航元素
@@ -13,8 +14,10 @@ function moveUd() {
   this.reMove = document.getElementById('tri-2');
   this.state = 'info-per';
   this.reMove.style.display = 'none';
+  this.nowCk = document.querySelectorAll('#nav ul li a');
   var self = this;
-  //获取当前位置
+
+  //获取页面当前位置
   function where() {
     switch (self.state) {
       case 'info-per' :
@@ -34,80 +37,82 @@ function moveUd() {
         break;
     }
   }
-  //移动界面
-  function toMove(move) {
-
-    switch (move.id) {
-      case 'info-per' :
-        self.curScr.className = 'move-1';
-        self.triMove.style.display = 'block';
-        self.reMove.style.display = 'none';
-        self.state = 'info-per';
-        break;
-
-      case 'info-edu' :
-        self.curScr.className = 'move-2';
-        self.triMove.style.display = 'block';
-        self.reMove.style.display = 'block';
-        self.state = 'info-edu';
-        break;
-
-      case 'info-exp' :
-        self.curScr.className = 'move-3';
-        self.triMove.style.display = 'block';
-        self.reMove.style.display = 'block';
-        self.state = 'info-exp';
-        break;
-
-      case 'info-skill':
-        self.curScr.className = 'move-4';
-        self.triMove.style.display = 'block';
-        self.reMove.style.display = 'block';
-        self.state = 'info-skill';
-        break;
-
-      case 'info-eva' :
-        self.curScr.className = 'move-5';
-        self.triMove.style.display = 'none';
-        self.reMove.style.display = 'block';
-        self.state = 'info-eva';
-        break;
+  
+  //获取导航块当前位置
+  function bkcHan() {
+    for ( i = 0 ; i<self.nowCk.length ; i++){
+      if ('info-'+self.nowCk[i].id === self.state){
+        self.nowCk[i].classList.add('nowLoc');
+      }else {
+        self.nowCk[i].classList.remove('nowLoc');
+      }
     }
   }
-  function chAni(a,b) {
-    a.className = 'hop';
-    b.className = 'hop';
-  }
+
+
   for (var i = 0; i < self.menus.length; i++) {
-    var tri1 = document.getElementById('tri-1');
-    var tri2 = document.getElementById('tri-2');
-    var tri3 = document.getElementById('tri-3');
-    var tri4 = document.getElementById('tri-4');
+
     //点击导航块效果
     self.menus[i].addEventListener('click', function (e) {
 
       //捕获当前点击的导航块
       var move = document.getElementById('info-' + e.currentTarget.id);
       //导航色块变化
-      var nowCk = document.getElementById(e.currentTarget.id);
-      var lastCk = document.querySelector('#nav ul li a.nowLoc');
-      if (nowCk.id !== lastCk.id) {
+      var nowLoc = document.getElementById(e.currentTarget.id);
+      var lastLoc = document.querySelector('#nav ul li a.nowLoc');
+      if (nowLoc.id !== lastLoc.id) {
 
-        lastCk.classList.remove('nowLoc');
-        nowCk.classList.add('nowLoc');
-        lastCk = nowCk.id;
+        lastLoc.classList.remove('nowLoc');
+        nowLoc.classList.add('nowLoc');
+        lastLoc = nowLoc.id;
         where();
-        toMove(move);
-          }
+        switch (move.id) {
+          case 'info-per' :
+            self.curScr.className = 'move-1';
+            self.triMove.style.display = 'block';
+            self.reMove.style.display = 'none';
+            self.state = 'info-per';
+            break;
 
-      });
+          case 'info-edu' :
+            self.curScr.className = 'move-2';
+            self.triMove.style.display = 'block';
+            self.reMove.style.display = 'block';
+            self.state = 'info-edu';
+            break;
 
-    }
+          case 'info-exp' :
+            self.curScr.className = 'move-3';
+            self.triMove.style.display = 'block';
+            self.reMove.style.display = 'block';
+            self.state = 'info-exp';
+            break;
 
-    var nowCk = document.querySelectorAll('#nav ul li a');
+          case 'info-skill':
+            self.curScr.className = 'move-4';
+            self.triMove.style.display = 'block';
+            self.reMove.style.display = 'block';
+            self.state = 'info-skill';
+            break;
 
-    //向下移动
-    self.triMove.onclick = function () {
+          case 'info-eva' :
+            self.curScr.className = 'move-5';
+            self.triMove.style.display = 'none';
+            self.reMove.style.display = 'block';
+            self.state = 'info-eva';
+            break;
+        }
+      }
+
+    });
+
+  }
+
+
+
+  //向下移动
+  self.triMove.onclick = function () {
+    console.log(this);
     where();
     switch (self.state) {
       case "info-per":
@@ -128,58 +133,51 @@ function moveUd() {
         self.reMove.style.display = 'block';
         self.state = 'info-skill';
         break;
-        case "info-skill":
+      case "info-skill":
         self.curScr.className = 'goNext';
         self.triMove.style.display = 'none';
         self.reMove.style.display = 'block';
         self.state = 'info-eva';
         break;
     }
-      for ( i = 0 ; i<nowCk.length ; i++){
-        if ('info-'+nowCk[i].id === self.state){
-          nowCk[i].classList.add('nowLoc');
-        }else {
-          nowCk[i].classList.remove('nowLoc');
-        }
-      }
+    bkcHan();
   };
 
-    //向下移动
-    self.reMove.onclick = function () {
-      where();
-      switch (self.state) {
-        case "info-edu":
-          self.curScr.className = 'goLast';
-          self.triMove.style.display = 'block';
-          self.reMove.style.display = 'none';
-          self.state = 'info-per';
-          break;
-        case "info-exp":
-          self.curScr.className = 'goLast';
-          self.triMove.style.display = 'block';
-          self.reMove.style.display = 'block';
-          self.state = 'info-edu';
-          break;
-        case "info-skill":
-          self.curScr.className = 'goLast';
-          self.triMove.style.display = 'block';
-          self.reMove.style.display = 'block';
-          self.state = 'info-exp';
-          break;
-        case "info-eva":
-          self.curScr.className = 'goLast';
-          self.triMove.style.display = 'block';
-          self.reMove.style.display = 'block';
-          self.state = 'info-skill';
-      }
-      for ( i = 0 ; i<nowCk.length ; i++){
-        if ('info-'+nowCk[i].id === self.state){
-          nowCk[i].classList.add('nowLoc');
-        }else {
-          nowCk[i].classList.remove('nowLoc');
-        }
-      }
+  //向下移动
+  self.reMove.onclick = function () {
+    console.log(this);
+    where();
+    switch (self.state) {
+      case "info-edu":
+        self.curScr.className = 'goLast';
+        self.triMove.style.display = 'block';
+        self.reMove.style.display = 'none';
+        self.state = 'info-per';
+        break;
+      case "info-exp":
+        self.curScr.className = 'goLast';
+        self.triMove.style.display = 'block';
+        self.reMove.style.display = 'block';
+        self.state = 'info-edu';
+        break;
+      case "info-skill":
+        self.curScr.className = 'goLast';
+        self.triMove.style.display = 'block';
+        self.reMove.style.display = 'block';
+        self.state = 'info-exp';
+        break;
+      case "info-eva":
+        self.curScr.className = 'goLast';
+        self.triMove.style.display = 'block';
+        self.reMove.style.display = 'block';
+        self.state = 'info-skill';
     }
+    bkcHan();
+  };
+
+
+
+
 }
 
 
@@ -196,6 +194,6 @@ function addLoadEvent(func) {
     }
   }
 }
+
+
 addLoadEvent(moveUd());
-
-
