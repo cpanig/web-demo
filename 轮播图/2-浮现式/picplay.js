@@ -1,35 +1,47 @@
 window.onload = function () {
-  var nav = document.querySelectorAll('#dou ul li');
-  var pic = document.querySelectorAll('#son ul li');
-  var lastOn = document.querySelector('#dou ul li.nowOn');
-  var state = '';
+  if(!document.querySelectorAll) return false;
+  if(!document.querySelector) return false;
+  if (!document.querySelectorAll('#dou ul li')) return false;
+  let nav = document.querySelectorAll('#dou ul li');
 
-  for (var i=0 ; i<nav.length; i++){
-    let  j = i;
-    nav[i].addEventListener('mouseover',function (e) {
-      var nowOn = e.currentTarget;
+  let state = '';
+
+
+
+  for (let i = 0 , len=nav.length ; i < len; i++ ) {
+
+
+    nav[i].addEventListener('mouseenter',function (e) {
+      let nowOn = e.currentTarget;
+      if (!document.querySelectorAll('#son ul li'))  return false;
+      if (!document.querySelector('#dou ul li.nowOn')) return false;
+      let lastOn = document.querySelector('#dou ul li.nowOn');
+      let pic = document.querySelectorAll('#son ul li');
+
+
       //四个块的颜色变动
       if (nowOn.className !== lastOn.className){
         nowOn.classList.add('nowOn');
         lastOn.classList.remove('nowOn');
         lastOn = nowOn;
+
       }
 
       //四个图片的变动
       if (state === ''){
-        pic[j].classList.add('show');
-        state = pic[j];
-      }if (state === pic[j]){
+        pic[i].classList.add('show');
+        state = pic[i];
+      }if (state === pic[i]){
         return state;
       }else{
         //浮入
-        pic[j].classList.remove('fade');
-        pic[j].classList.add('show');
+        pic[i].classList.remove('fade');
+        pic[i].classList.add('show');
 
         //浮出
         state.classList.remove('show');
         state.classList.add('fade');
-        state = pic[j];
+        state = pic[i];
       }
 
 
