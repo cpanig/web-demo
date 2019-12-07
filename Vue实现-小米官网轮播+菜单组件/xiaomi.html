@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="xiaomi.css">
+  
+    <!-- 本地没有vue包时使用 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 本地vue包 -->
+    <script src="../dist/js/vue.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body>
+    <!-- 容器 -->
+    <div>
+      <!-- 菜单容器 -->
+    <div class="container" @mouseleave="close">
+        <!-- 主菜单 -->
+        <ul class="menu" >
+          <li v-for="kinds in kind" :key="kinds.id" @mouseenter="show(kinds.id)"  >{{ kinds.name }}</li>
+        </ul >
+        <!-- ex菜单 -->
+        <ul class="ex-menu" v-show="exshow">
+        <li v-for="exmenus in exmenu" :key="exmenus.id " v-show="exmenus.toshow" > {{ exmenus.num }} </li>
+      </ul>
+
+    </div>
+
+
+      <!-- 图片导播-->
+        <div class="pic-container">
+          <ul class="pic-player">
+            <div class="left " @click="golast">
+                <
+            </div>
+            <div class="right" @click="gonext">
+                >
+            </div>
+            <li v-for="imgs in img" :key="imgs.id">
+              <img :src="imgs.src" :style=" imgs.show === '1' ? show : hide" height="480" width="1226"/>
+            </li>
+          </ul>
+        </div>
+
+
+    </div>
+    <div>
+      <div class="form-group"></div>
+    </div>
+
+    <!-- 利用对应id，显示对应的延伸列表 -->
+    <!-- 1.打开，关闭列表-->
+    <!-- 2.打开对应的ex列表-->
+    <script>
+    var vm1 = new Vue({
+        el: '.container',
+
+          data: {
+            /*主菜单*/
+            kind: [
+                {id: 1, name: '手机 电话卡'},
+                {id: 2, name: '电视 盒子'},
+                {id: 3, name: '笔记本 显示器 平板'},
+                {id: 4, name: '家电 插线板'},
+                {id: 5, name: '出行 穿戴'},
+                {id: 6, name: '智能 路由器'},
+                {id: 7, name: '电源 配件'},
+                {id: 8, name: '健康 儿童'},
+                {id: 9, name: '耳机 音箱'},
+                {id: 10, name: '生活 箱包'}
+            ],
+            /*扩展菜单*/
+            exmenu: [
+                {id: 1, num: 11111111111, toshow: false},
+                {id: 2, num: 22222222222, toshow: false},
+                {id: 3, num: 3333333333, toshow: false},
+                {id: 4, num: 44444444444, toshow: false},
+                {id: 5, num: 555555555555, toshow: false},
+                {id: 6, num: 66666666666666, toshow: false},
+                {id: 7, num: 77777777777777, toshow: false},
+                {id: 8, num: 8888888888888, toshow: false},
+                {id: 9, num: 99999999999, toshow: false},
+                {id: 10, num: 10000000000000, toshow: false}
+            ],
+                exshow : false
+        },
+            methods:{
+                /* 打开方法：比较id值，等于则打开，不等于则关闭*/
+                show(id){
+                    for (this.exmenus of this.exmenu){
+                        if (this.exmenus.id === id){
+                            this.exshow = true;
+                            this.exmenus.toshow = true;
+                        }if (this.exmenus.id !== id){
+                            this.exmenus.toshow = false;
+                        }
+                    }
+                },
+                /* 关闭方法：遍历整个ex列表，因为有且只有一个ex的id为true，所以找到一个就可以退出循环*/
+                close(){
+                    for (this.exmenus of this.exmenu){
+                        if (this.exmenus.toshow === true){
+                            this.exmenus.toshow = false;
+                            break;
+                        }
+                    }
+
+                }
+
+            }
+
+        });
+
+    var vm2 = new Vue({
+        el:'.pic-container',
+        data:{
+            /* 图片库 */
+            img :[
+                { id : 1  , src : '../src/img/5.jpg' , show : '1'},
+                { id : 2  , src : '../src/img/6.webp', show : '0'},
+                { id : 3  , src : '../src/img/7.webp', show : '0'},
+                { id : 4  , src : '../src/img/8.webp', show : '0'},
+                { id : 5  , src : '../src/img/9.webp', show : '0'}
+            ],
+            /* 控制图片显示的两个样式 */
+            show:{ opacity: '1'},
+            hide:{ opacity: '0'}
+        },
+        methods: {
+           /* 左边移动 */
+            /* 如果到了最右端，再次点击回到导播图的最左端*/
+
+            gonext(){
+                for ( let i = 0 ; i< this.img.length ; i++){
+                    if (this.img[i].show === '1'){
+
+                        if  ( i === this.img.length-1){
+
+                            this.img[0].show =  '1';
+                            this.img[4].show =  '0';
+                            break;
+                    }else if(i !== this.img.length-1) {
+
+                            this.img[i].show =   '0';
+                            this.img[i+1].show = '1';
+                            break;
+                        }
+                    }
+                }
+            },
+
+            /* 右边移动 */
+            /* 如果到了最左端，再次点击回到导播图的最右端*/
+
+            golast(){
+                for ( let i = 0 ; i< this.img.length ; i++){
+                    if (this.img[i].show === '1'){
+
+                        if  ( i === 0){
+
+                            this.img[this.img.length-1].show =  '1';
+                            this.img[0].show =  '0';
+                            break;
+                        }else if(i !== 0) {
+
+                            this.img[i].show =   '0';
+                            this.img[i-1].show = '1';
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+    })
+
+
+  </script>
+</body>
+</html>
+
